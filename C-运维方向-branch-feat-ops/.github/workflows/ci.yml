@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 安装依赖
+        run: pip install -r requirements.txt
+      - name: 冒烟测试
+        run: |
+          if [ -d api ] && [ -d sim ] && [ -d web ] && [ -d inference ]; then
+            python -m pytest -q
+          else
+            echo "功能分支尚未合齐（需要 sim / inference / api / web 四个目录），跳过整仓测试。"
+            echo "三个分支全部合并后，main 上的 CI 必须全绿。"
+          fi
