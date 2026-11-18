@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web 智能巡检机器人仿真系统</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="layout">
+    <section class="card map-card">
+      <h1>2D 网格仿真地图</h1>
+      <canvas id="map-canvas" width="640" height="480"></canvas>
+      <p class="map-legend">
+        <span class="legend-item"><i class="swatch swatch-robot"></i>机器人</span>
+        <span class="legend-item"><i class="swatch swatch-obstacle"></i>障碍</span>
+        <span class="legend-item"><i class="swatch swatch-start"></i>起点</span>
+        <span class="legend-item"><i class="swatch swatch-point"></i>巡检点</span>
+      </p>
+    </section>
+
+    <aside class="side">
+      <section class="card">
+        <h2>机器人状态</h2>
+        <ul id="state-list" class="state-list"></ul>
+        <p id="anomaly-badge" class="anomaly-badge">异常检测：正常</p>
+        <p id="log-line" class="log"></p>
+      </section>
+
+      <section class="card">
+        <h2>控制</h2>
+        <div class="btn-row">
+          <button data-cmd="START">启动</button>
+          <button data-cmd="STOP">暂停</button>
+          <button data-cmd="RESET">重置</button>
+        </div>
+        <div class="btn-grid">
+          <button data-cmd="MOVE" data-dir="forward">前进</button>
+          <button data-cmd="MOVE" data-dir="back">后退</button>
+          <button data-cmd="MOVE" data-dir="left">左转</button>
+          <button data-cmd="MOVE" data-dir="right">右转</button>
+        </div>
+        <div class="btn-row auto-row">
+          <button data-cmd="PLAN">自动巡检</button>
+          <button data-cmd="HOME">回到起点</button>
+        </div>
+        <p class="hint">前进/后退沿当前朝向移动一格，左转/右转原地转向 90°；自动巡检中手动移动会被拒绝，暂停/启动可控制自动步进。</p>
+      </section>
+
+      <section class="card">
+        <h2>巡检进度</h2>
+        <div class="patrol-summary">
+          <div>
+            <span id="patrol-rounds" class="patrol-num">0</span>
+            <span class="patrol-label">已完成轮次</span>
+          </div>
+          <span id="patrol-status" class="patrol-status">在起点</span>
+        </div>
+        <div class="points-line">
+          <span>巡检点 <strong id="points-visited">0</strong>/<span id="points-total">9</span></span>
+          <span id="auto-badge" class="auto-badge">手动模式</span>
+        </div>
+        <div class="records-wrap">
+          <table class="records-table">
+            <thead>
+              <tr><th>轮次</th><th>完成时间</th></tr>
+            </thead>
+            <tbody id="records-body">
+              <tr class="empty-row"><td colspan="2">暂无巡检记录</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </aside>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

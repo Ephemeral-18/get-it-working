@@ -1,0 +1,272 @@
+:root {
+  color-scheme: dark;
+  --bg: #0f172a;
+  --card: #1e293b;
+  --border: #334155;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+}
+
+.layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 20px;
+}
+
+.card h1 {
+  font-size: 18px;
+  margin: 0 0 12px;
+}
+
+.card h2 {
+  font-size: 15px;
+  margin: 0 0 10px;
+  color: var(--accent);
+}
+
+.side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.map-legend {
+  display: flex;
+  gap: 16px;
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.swatch-robot {
+  background: #38bdf8;
+}
+
+.swatch-start {
+  background: rgba(34, 197, 94, 0.75);
+}
+
+.swatch-point {
+  background: rgba(245, 158, 11, 0.9);
+  border-radius: 50%;
+}
+
+.swatch-obstacle {
+  background: #475569;
+}
+
+.state-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 16px;
+  font-size: 14px;
+}
+
+.state-list li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 4px;
+}
+
+.state-list span {
+  color: var(--muted);
+}
+
+.anomaly-badge {
+  display: inline-block;
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.anomaly-badge.alert {
+  color: #f87171;
+  border-color: rgba(248, 113, 113, 0.55);
+  background: rgba(248, 113, 113, 0.08);
+}
+
+.log {
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+  font-family: Consolas, monospace;
+  min-height: 1.2em;
+}
+
+.btn-row,
+.btn-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.btn-row {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.btn-grid {
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 8px;
+}
+
+.auto-row {
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 8px;
+}
+
+button {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #0b1220;
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+button:hover {
+  background: #16233b;
+}
+
+.hint {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.patrol-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.patrol-num {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.patrol-label {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.patrol-status {
+  font-size: 13px;
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.patrol-status.away {
+  color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.45);
+}
+
+.points-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.points-line strong {
+  color: var(--accent);
+  font-size: 16px;
+}
+
+.auto-badge {
+  font-size: 12px;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+.auto-badge.on {
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.5);
+}
+
+.records-wrap {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.records-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.records-table th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--muted);
+  padding: 6px 4px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--card);
+}
+
+.records-table td {
+  padding: 6px 4px;
+  border-bottom: 1px dashed var(--border);
+}
+
+.records-table .empty-row td {
+  color: var(--muted);
+  text-align: center;
+  padding: 14px 0;
+}
